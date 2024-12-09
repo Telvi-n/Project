@@ -1,0 +1,11 @@
+DROP DATABASE IF EXISTS ambulance_response;
+
+CREATE DATABASE IF NOT EXISTS ambulance_response;
+
+CREATE TABLE IF NOT EXISTS ambulance_response.users (User_ID INT NOT NULL AUTO_INCREMENT , Fullname TEXT NOT NULL , Phone_Number TEXT NOT NULL , Email_Address TEXT NOT NULL , Password TEXT NOT NULL , Hospital TEXT NULL , User_Type TEXT NOT NULL , PRIMARY KEY (User_ID), UNIQUE (Email_Address)) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS ambulance_response.ambulance (Ambulance_ID INT NOT NULL AUTO_INCREMENT , Operator_ID TEXT NOT NULL , Hospital TEXT NOT NULL , ETA TEXT NOT NULL , Location TEXT NOT NULL , Image TEXT NOT NULL , Created_At TEXT NOT NULL DEFAULT NOW() , PRIMARY KEY (Ambulance_ID)) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS ambulance_response.emergency (Emergency_ID INT NOT NULL AUTO_INCREMENT , Patient_ID TEXT NOT NULL , Operator_ID TEXT NOT NULL , Ambulance_ID INT NOT NULL , Details TEXT NOT NULL , Location TEXT NULL , Start_At TEXT NOT NULL DEFAULT NOW(), End_At TEXT NULL, Status TEXT NOT NULL DEFAULT 'Pending', PRIMARY KEY (Emergency_ID)) ENGINE = InnoDB;
+
+INSERT INTO ambulance_response.users(Phone_Number, Fullname, Email_Address, Password, User_Type) VALUES ('0712345678','Comfort Kamani','comfort@gmail.com',md5('145177'), 'Administrator'), ('0712345678','Patrick Amani','patrick@gmail.com',md5('138898'), 'Administrator');
